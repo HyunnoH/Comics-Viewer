@@ -5,7 +5,7 @@ const { app, BrowserWindow } = require("electron");
 const { join } = require("path");
 const isDev = require("electron-is-dev");
 
-let mainWindow: BrowserWindow | null;
+let mainWindow;
 
 function createWindow() {
   mainWindow = new BrowserWindow({ webPreferences: { nodeIntegration: true } });
