@@ -1,18 +1,39 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
 import { Button } from "reactstrap";
-import { remote } from "electron";
+import { useState } from "react";
+import { FileList } from "../../types/fileList";
+import Listup from "../Listup";
+import { OpenDialogReturnValue } from "electron";
+
+const { dialog } = window.require("electron").remote;
 
 export default function Home() {
+  const [files, setFiles] = useState<FileList>();
   const openDialog = (type?: "openFile" | "openDirectory") => {
-    remote.dialog.showOpenDialog({
-      title: "Open ...",
-      properties:
-        process.platform !== "darwin" ? ["openDirectory", "openFile"] : [type!],
-    });
+    dialog
+      .showOpenDialog({
+        title: "Open ...",
+        properties: ["openFile", "openDirectory"],
+        filters: [
+          { name: "Images", extensions: ["jpg", "jpeg", "png"] },
+          {
+            name: "All files",
+            extensions: ["*"],
+          },
+        ],
+      })
+      .then((files: OpenDialogReturnValue) => {
+        if (files.canceled) return;
+        setFiles({
+          filePaths: files.filePaths,
+        });
+      });
   };
 
-  return (
+  return files ? (
+    <Listup fileList={files} />
+  ) : (
     <div css={styles.app}>
       <div css={styles.title}>
         <h1>Comics-Viewer</h1>
