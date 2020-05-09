@@ -34,36 +34,36 @@ export default function Home() {
   return files ? (
     <Listup fileList={files} />
   ) : (
-    <div css={styles.app}>
-      <div css={styles.title}>
-        <h1>Comics-Viewer</h1>
-        <span>Make your comics much better</span>
-      </div>
-      <div css={styles.buttonContainer}>
-        {process.platform !== "darwin" ? (
-          <div
-            style={{
-              width: "100%",
-              justifyContent: "space-between",
-              display: "flex",
-            }}>
-            <Button
-              css={styles.button}
-              onClick={() => openDialog("openDirectory")}>
-              Open directory
+      <div css={styles.app}>
+        <div css={styles.title}>
+          <h1>Comics-Viewer</h1>
+          <span>Make your comics much better</span>
+        </div>
+        <div css={styles.buttonContainer}>
+          {process.platform !== "darwin" ? (
+            <div
+              style={{
+                width: "100%",
+                justifyContent: "space-between",
+                display: "flex",
+              }}>
+              <Button
+                css={styles.button}
+                onClick={() => openDialog("openDirectory")}>
+                Open directory
             </Button>
-            <Button css={styles.button} onClick={() => openDialog("openFile")}>
-              Open file
+              <Button css={styles.button} onClick={() => openDialog("openFile")}>
+                Open file
             </Button>
-          </div>
-        ) : (
-          <Button css={styles.button} onClick={() => openDialog()}>
-            Open ...
-          </Button>
-        )}
+            </div>
+          ) : (
+              <Button css={styles.button} onClick={() => openDialog()}>
+                Open ...
+              </Button>
+            )}
+        </div>
       </div>
-    </div>
-  );
+    );
 }
 
 const styles = {

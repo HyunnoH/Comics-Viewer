@@ -7,7 +7,7 @@ type PreviewImageProps = {
 export default function PreviewImage({ filePath }: PreviewImageProps) {
   return (
     <div>
-      <img />
+      <img src={filePath} />
     </div>
   );
 }
