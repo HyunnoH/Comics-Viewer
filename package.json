@@ -51,7 +51,7 @@
     "@babel/preset-env": "^7.9.5",
     "concurrently": "^5.1.0",
     "customize-cra": "^0.9.1",
-    "electron": "^8.2.3",
+    "electron": "^8.2.4",
     "react-app-rewired": "^2.1.5",
     "wait-on": "^4.0.2"
   }
