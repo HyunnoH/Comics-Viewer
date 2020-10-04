@@ -1,9 +1,10 @@
 /** @jsx jsx */
+import { memo } from "react";
 import { jsx, css } from "@emotion/core";
 import { FaHome, FaBook } from "react-icons/fa";
 import { useGlobal } from "../../store/modules/global";
 
-export default function Sidebar() {
+function Sidebar() {
   const { changeView } = useGlobal();
   return (
     <div css={styles.sideBar}>
@@ -30,3 +31,5 @@ const styles = {
     margin: 12px;
   `,
 };
+
+export default memo(Sidebar);
