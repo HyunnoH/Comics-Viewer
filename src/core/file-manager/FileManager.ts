@@ -1,30 +1,25 @@
-import fs from 'fs-extra';
+import { promises as fs } from "fs";
 
 class FileManager {
   private static instance: FileManager;
 
-  private constructor() { }
+  private constructor() {}
 
   static getInstance() {
     if (!FileManager.instance) {
       FileManager.instance = new FileManager();
     }
-    return this.instance
+    return this.instance;
   }
 
-  getFileOrDirectory(path: string) {
-    return (fs.lstatSync(path).isDirectory()) ? this.getDirectory(path) : this.getFile(path);
-  }
-
-  getFile(path: string) {
-    const file = fs.readFileSync(path);
+  getFile = async (path: string) => {
+    const file = await fs.readFile(path);
     return file.toString();
-  }
+  };
 
-  getDirectory(path: string) {
-    const directory = fs.readdirSync(path);
-    return directory;
-  }
+  getDirectory = async (path: string) => {
+    return fs.readdir(path);
+  };
 }
 
 export default FileManager.getInstance();

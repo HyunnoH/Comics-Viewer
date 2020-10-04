@@ -17,8 +17,6 @@ const styles = {
         "Helvetica Neue", sans-serif;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-      background-color: #0f1a20;
-      color: #f0f0f0;
     }
 
     *,
