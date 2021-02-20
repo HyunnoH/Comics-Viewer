@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, css } from "@emotion/core";
+import { jsx, css } from "@emotion/react";
 import Sidebar from "./feature/side-bar";
 import Home from "./feature/home";
 import { useGlobalState } from "./store/modules/global";

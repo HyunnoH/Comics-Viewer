@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { memo } from "react";
-import { jsx, css } from "@emotion/core";
+import { jsx, css } from "@emotion/react";
 import { FaHome, FaBook } from "react-icons/fa";
 import { useGlobal } from "../../store/modules/global";
 

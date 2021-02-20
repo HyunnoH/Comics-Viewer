@@ -1,16 +1,12 @@
 /** @jsx jsx */
-import {jsx, css} from '@emotion/core'
+import { jsx, css } from "@emotion/react";
 
-interface HistoryListProps {
-  
-}
+interface HistoryListProps {}
 
 export default function HistoryList({}: HistoryListProps) {
-  return <div>
-    
-  </div>
+  return <div></div>;
 }
 
 const styles = {
-  wrapper: css``
-}
+  wrapper: css``,
+};

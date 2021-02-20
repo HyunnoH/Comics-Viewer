@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@emotion/core": "^10.0.28",
+    "@emotion/react": "^11.1.5",
     "electron-is-dev": "^1.2.0",
     "immer": "^8.0.1",
     "localforage": "^1.9.0",
