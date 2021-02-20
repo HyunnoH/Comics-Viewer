@@ -1,25 +1,16 @@
-import { promises as fs } from "fs";
+import { DialogManager } from "../dialog-manager";
+import { ElectronDialogManager } from "../dialog-manager/electron/impl";
 
 class FileManager {
-  private static instance: FileManager;
-
-  private constructor() {}
-
-  static getInstance() {
-    if (!FileManager.instance) {
-      FileManager.instance = new FileManager();
-    }
-    return this.instance;
+  constructor(dialogManager: DialogManager) {
+    this.dialogManager = dialogManager;
   }
 
-  getFile = async (path: string) => {
-    const file = await fs.readFile(path);
-    return file.toString();
-  };
+  openDialog() {
+    this.dialogManager.showOpenDialog();
+  }
 
-  getDirectory = async (path: string) => {
-    return fs.readdir(path);
-  };
+  private dialogManager: DialogManager;
 }
 
-export default FileManager.getInstance();
+export default new FileManager(new ElectronDialogManager());
