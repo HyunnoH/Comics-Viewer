@@ -6,9 +6,12 @@ exports.__esModule = true;
 var electron_1 = require("electron");
 var path_1 = require("path");
 var electron_is_dev_1 = __importDefault(require("electron-is-dev"));
+require("electron-reload")(__dirname);
 var mainWindow;
 function createWindow() {
-    mainWindow = new electron_1.BrowserWindow({ webPreferences: { nodeIntegration: true } });
+    mainWindow = new electron_1.BrowserWindow({
+        webPreferences: { nodeIntegration: true, enableRemoteModule: true }
+    });
     mainWindow.loadURL(electron_is_dev_1["default"]
         ? "http://localhost:3000"
         : "file://" + path_1.join(__dirname, "../build/index.html"));
@@ -26,4 +29,16 @@ electron_1.app.on("window-all-closed", function () {
 electron_1.app.on("activate", function () {
     if (mainWindow === null)
         createWindow();
+});
+electron_1.ipcMain.on("show-open-dialog", function (event) {
+    if (!mainWindow) {
+        throw new Error("mainWindow is not initialized!");
+    }
+    electron_1.dialog
+        .showOpenDialog(mainWindow, {
+        properties: ["openDirectory"]
+    })
+        .then(function (response) {
+        console.log(response);
+    });
 });
