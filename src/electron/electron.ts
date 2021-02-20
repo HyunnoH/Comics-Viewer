@@ -1,6 +1,6 @@
 import { app, BrowserWindow } from "electron";
 import { join } from "path";
-import * as electronIsDev from "electron-is-dev";
+import electronIsDev from "electron-is-dev";
 
 let mainWindow: BrowserWindow | null;
 

@@ -18,10 +18,10 @@
     "use-immer": "^0.4.1"
   },
   "scripts": {
-    "start": "concurrently \"BROWSER=none yarn react-start\" \"wait-on http://localhost:3000 && yarn build-electron-scripts && electron src/electron/electron.js\"",
+    "start": "concurrently \"BROWSER=none yarn react-start\" \"wait-on http://localhost:3000 && yarn build-electron-scripts && electron .\"",
     "react-start": "react-app-rewired start",
     "build": "react-app-rewired build",
-    "build-electron-scripts": "tsc ./src/electron/electron.ts",
+    "build-electron-scripts": "tsc ./src/electron/electron.ts --esModuleInterop --outDir ./public",
     "test": "jest",
     "eject": "react-app-rewired eject"
   },
