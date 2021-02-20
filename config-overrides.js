@@ -1,3 +1,3 @@
-const { override } = require("customize-cra");
+const { override, setWebpackTarget } = require("customize-cra");
 
-module.exports = override();
+module.exports = override(setWebpackTarget("electron-renderer"));
