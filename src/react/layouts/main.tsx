@@ -1,5 +1,6 @@
 import React, { ReactNode } from "react";
 import { Layout } from "antd";
+import ContentWrapper from "./content-wrapper";
 
 const { Content, Sider } = Layout;
 
@@ -16,7 +17,9 @@ export default function MainLayout({
     <Layout style={{ minHeight: "100vh" }}>
       <Sider collapsed>{siderChildren}</Sider>
       <Layout>
-        <Content>{children}</Content>
+        <Content>
+          <ContentWrapper>{children}</ContentWrapper>
+        </Content>
       </Layout>
     </Layout>
   );

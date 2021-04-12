@@ -1,21 +1,21 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/react";
 import { Button, Upload } from "antd";
+import { useAddImage } from "../../../../../queries";
 
 export default function NotRecentOpenFound() {
+  const { mutate } = useAddImage();
+
   return (
     <div css={styles.main}>
       <Upload.Dragger
-        // beforeUpload={(file, fileList) => {
-        //   console.log(file, fileList);
-        //   return false;
-        // }}
+        beforeUpload={() => false}
         directory
         css={styles.dragger}
         multiple
         name="file"
         showUploadList={false}
-        onChange={(info) => console.log(info)}
+        onChange={(info) => mutate((info.file as unknown) as File)}
       >
         <p>No file is selected.</p>
         <Button>Click here</Button>
