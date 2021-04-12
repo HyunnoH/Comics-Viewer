@@ -1,6 +1,6 @@
 import { QueryClient } from "react-query";
 
-export default function configureQueryClient() {
+export function configureQueryClient() {
   const queryClient = new QueryClient({
     defaultOptions: {
       mutations: {},

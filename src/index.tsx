@@ -7,12 +7,18 @@ import App from "./react/App";
 import * as serviceWorker from "./react/serviceWorker";
 import { GlobalStyle } from "./react/styles";
 import store from "./react/store/createStore";
+import { QueryClientProvider } from "react-query";
+import { configureQueryClient } from "./queries";
+
+const queryClient = configureQueryClient();
 
 ReactDOM.render(
   <React.StrictMode>
     <GlobalStyle />
     <Provider store={store}>
-      <App />
+      <QueryClientProvider client={queryClient}>
+        <App />
+      </QueryClientProvider>
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")
