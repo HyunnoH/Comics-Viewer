@@ -1,52 +1,36 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/react";
-import { useEffect, useRef } from "react";
-import {
-  DialogManager,
-  ElectronDialogManager,
-  OpenDialogHandler,
-} from "../../../../../core/dialog-manager";
+import { Button, Upload } from "antd";
 
 export default function NotRecentOpenFound() {
-  const dialogManager = useRef<DialogManager>();
-
-  useEffect(() => {
-    dialogManager.current = new ElectronDialogManager();
-
-    const handler: OpenDialogHandler = (event, files) => {
-      console.log(
-        event,
-        files.map((file) => file.name)
-      );
-    };
-    dialogManager.current.addOpenDialogEventListener(handler);
-
-    return () => dialogManager.current?.removeDialogEventListener(handler);
-  }, []);
-
   return (
     <div css={styles.main}>
-      <div>No results found</div>
-      <button
-        onClick={() => {
-          if (!dialogManager.current) {
-            throw new Error();
-          }
-          dialogManager.current.showOpenDialog();
-        }}
+      <Upload.Dragger
+        // beforeUpload={(file, fileList) => {
+        //   console.log(file, fileList);
+        //   return false;
+        // }}
+        directory
+        css={styles.dragger}
+        multiple
+        name="file"
+        showUploadList={false}
+        onChange={(info) => console.log(info)}
       >
-        Open
-      </button>
+        <p>No file is selected.</p>
+        <Button>Click here</Button>
+        <p>Or drag files to here to upload directory</p>
+      </Upload.Dragger>
     </div>
   );
 }
 
 const styles = {
   main: css`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     height: 100%;
+    padding: 24px;
+  `,
+  dragger: css`
+    width: 80%;
   `,
 };

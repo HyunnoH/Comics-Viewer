@@ -1,43 +1,25 @@
-/** @jsx jsx */
-import { jsx, css } from "@emotion/react";
+import "antd/dist/antd.css";
+import React from "react";
 import Sidebar from "./feature/side-bar";
 import Home from "./feature/home";
-import { useGlobalState } from "./store/modules/global";
+import MainLayout from "./layouts/main";
+
+import { BrowserRouter, Route } from "react-router-dom";
 import Viewer from "./feature/viewer";
 
 function App() {
-  const { viewType } = useGlobalState();
-
-  function getPage() {
-    switch (viewType) {
-      case "home":
-        return <Home />;
-      case "viewer":
-        return <Viewer />;
-      default:
-        return null;
-    }
-  }
-
   return (
-    <div css={styles.main}>
-      <Sidebar />
-      <div css={styles.contents}>{getPage()}</div>
-    </div>
+    <BrowserRouter>
+      <MainLayout siderChildren={<Sidebar />}>
+        <Route path="/" exact>
+          <Home />
+        </Route>
+        <Route path="/manga">
+          <Viewer />
+        </Route>
+      </MainLayout>
+    </BrowserRouter>
   );
 }
-
-const styles = {
-  main: css`
-    display: flex;
-    flex-wrap: wrap;
-    height: 100vh;
-  `,
-  contents: css`
-    flex-basis: 0;
-    flex-grow: 999;
-    padding: 24px;
-  `,
-};
 
 export default App;

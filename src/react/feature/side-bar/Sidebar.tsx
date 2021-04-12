@@ -1,35 +1,24 @@
-/** @jsx jsx */
-import { memo } from "react";
-import { jsx, css } from "@emotion/react";
+import React, { memo } from "react";
 import { FaHome, FaBook } from "react-icons/fa";
-import { useGlobal } from "../../store/modules/global";
+
+import { Menu } from "antd";
+import { useHistory } from "react-router";
 
 function Sidebar() {
-  const { changeView } = useGlobal();
+  const history = useHistory();
+
   return (
-    <div css={styles.sideBar}>
-      <FaHome css={styles.iconStyle} onClick={() => changeView("home")} />
-      <FaBook css={styles.iconStyle} onClick={() => changeView("viewer")} />
-    </div>
+    <Menu theme="dark">
+      <Menu.Item
+        icon={<FaHome />}
+        onClick={() => history.push("/")}
+      ></Menu.Item>
+      <Menu.Item
+        icon={<FaBook />}
+        onClick={() => history.push("/manga")}
+      ></Menu.Item>
+    </Menu>
   );
 }
-
-const styles = {
-  sideBar: css`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex-basis: 4rem;
-    flex-grow: 1;
-    flex-direction: column;
-    background-color: #213e3b;
-  `,
-  iconStyle: css`
-    color: white;
-    font-size: 32px;
-    cursor: pointer;
-    margin: 12px;
-  `,
-};
 
 export default memo(Sidebar);
