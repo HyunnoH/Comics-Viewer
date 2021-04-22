@@ -13,31 +13,50 @@ type DetailPageParams = {
 export default function DetailViewer() {
   const { fileId } = useParams<DetailPageParams>();
   const { data: fileEntry } = useFileEntry(fileId);
-  const [isVerticalView, setIsVerticalView] = useState(false);
+  const [isSmallScale, setIsSmallScale] = useState(true);
 
   if (!fileEntry) return null;
 
   return (
-    <section css={styles.wrapper}>
-      <Button onClick={() => setIsVerticalView((prev) => !prev)}>
-        Click here
-      </Button>
-      <img
-        src={fileEntry.url}
-        alt={fileEntry.id}
-        css={css`
-          ${isVerticalView ? styles.vertical : ""}
-        `}
-      />
-    </section>
+    <div>
+      <div css={styles.toolbar}>
+        <Button onClick={() => setIsSmallScale((prev) => !prev)}>
+          Change vertical view
+        </Button>
+      </div>
+      <section css={styles.imageSection}>
+        <img
+          src={fileEntry.url}
+          alt={fileEntry.id}
+          css={css`
+            ${isSmallScale ? styles.smallScale : ""}
+          `}
+        />
+      </section>
+    </div>
   );
 }
 
 const styles = {
-  wrapper: css`
-    height: calc(100vh - 128px);
+  toolbar: css`
+    display: flex;
+    height: 48px;
+    background-color: #202020;
+    align-items: center;
+    padding-left: 16px;
+    padding-right: 16px;
+    position: fixed;
+    top: 0;
+    left: 80px;
+    right: 0;
   `,
-  vertical: css`
-    max-height: inherit;
+  smallScale: css`
+    height: calc(100vh - 48px);
+  `,
+  imageSection: css`
+    display: flex;
+    margin-top: 48px;
+    flex-direction: column;
+    align-items: center;
   `,
 };

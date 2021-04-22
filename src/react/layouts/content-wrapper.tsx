@@ -14,7 +14,7 @@ const styles = {
   wrapper: css`
     margin-left: 32px;
     margin-right: 32px;
-    margin-top: 64px;
-    margin-bottom: 64px;
+    margin-top: 32px;
+    margin-bottom: 32px;
   `,
 };

@@ -1,6 +1,5 @@
 import React, { ReactNode } from "react";
 import { Layout } from "antd";
-import ContentWrapper from "./content-wrapper";
 
 const { Content, Sider } = Layout;
 
@@ -15,10 +14,25 @@ export default function MainLayout({
 }: MainLayoutProps) {
   return (
     <Layout style={{ minHeight: "100vh" }}>
-      <Sider collapsed>{siderChildren}</Sider>
+      <Sider
+        collapsed
+        style={{
+          overflow: "auto",
+          height: "100vh",
+          position: "fixed",
+          left: 0,
+          paddingTop: 16,
+        }}
+      >
+        {siderChildren}
+      </Sider>
       <Layout>
-        <Content>
-          <ContentWrapper>{children}</ContentWrapper>
+        <Content
+          style={{
+            marginLeft: 80,
+          }}
+        >
+          {children}
         </Content>
       </Layout>
     </Layout>

@@ -1,10 +1,11 @@
 import React from "react";
+import ContentWrapper from "../../layouts/content-wrapper";
 import Title from "./components/title";
 
 export default function Home() {
   return (
-    <div>
+    <ContentWrapper>
       <Title title="Comics viewer" />
-    </div>
+    </ContentWrapper>
   );
 }
